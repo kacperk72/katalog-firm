@@ -1,0 +1,56 @@
+<form method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="" class="form-label">Nazwa firmy</label>
+    <input type="text" 
+      name="name" 
+      value="<%= form.name %>"
+      class="form-control <%- errors?.name ? 'is-invalid' : '' %>" required>
+    <% if (errors?.name) { %>
+      <div class="invalid-feedback"><%= errors.name.message %></div>
+    <% } %>
+  </div>
+
+  <% if (showFile) { %>
+    <% if (form.image) { %>
+      <div class="row">
+        <div class="col">
+          <img src="/uploads/<%- form.image %>" class="img-fluid" alt="">
+          <a href="/admin/firmy/<%- form.slug %>/usun-zdjecie" class="btn btn-sm btn-danger">Usuń</a>
+        </div>
+      </div>
+    <% } %>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Zdjęcie</label>
+      <input type="file" name="image" class="form-control" id="image">
+    </div>
+  <% } %>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Slug</label>
+    <input type="text" 
+      name="slug" 
+      value="<%= form.slug %>"
+      class="form-control <%- errors?.slug ? 'is-invalid' : '' %>" required>
+    <div class="form-text">Przynajmniej 3 znaki</div>
+    <% if (errors?.slug) { %>
+      <div class="invalid-feedback"><%= errors.slug.message %></div>
+    <% } %>
+  </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Liczba pracowników</label>
+    <input type="number" 
+      name="employeesCount" 
+      value="<%= form.employeesCount %>"
+      class="form-control">
+  </div>
+
+  <button class="btn btn-primary"><%- buttonText %></button>
+</form>
+
+<% if (errors) { %>
+  <div class="alert alert-danger mt-3">
+    Popraw dane w formularzu
+  </div>
+<% } %>

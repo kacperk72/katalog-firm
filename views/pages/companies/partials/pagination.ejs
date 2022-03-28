@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col">
+    <p>Wyników <%- companies.length %> na <%- resultsCount %></p>
+    <nav>
+      <ul class="pagination">
+        <% for (let i = 1; i <= pagesCount; i++) { %>
+          <li class="page-item <%- page == i ? 'active' : '' %>">
+            <a class="page-link" href="#" data-page="<%- i %>">
+              <%- i %>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const changePage = e => {
+    e.preventDefault();
+    const search = new URLSearchParams(window.location.search);
+    search.set('page', e.target.dataset.page);
+    const url = window.location.origin + window.location.pathname + '?' + search.toString();
+    window.location.href = url;
+  }
+
+  document.querySelectorAll('.pagination a').forEach(a => {
+    a.addEventListener('click', changePage);
+  });
+</script>

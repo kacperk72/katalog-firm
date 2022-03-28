@@ -1,0 +1,10 @@
+<h1>To jest strona główna</h1>
+
+<% if (user) { %>
+  <p>Zalogowano:<p>
+  <p>User: <%- user.email %></p>
+  <p>ID: <%- user._id %></p>
+<% } else { %>
+  <p>Witaj na naszej stronie. Jest to wyszukiwarka firm.</p>
+  <p>Załóż konto, aby dodać własną firmę!</p>
+<% } %>
